@@ -8,6 +8,7 @@ Projets 42 filler avec interface graphique
                                           ██║     ██║███████╗███████╗███████╗██║  ██║
                                           ╚═╝     ╚═╝╚══════╝╚══════╝╚══════╝╚═╝  ╚═╝
                                           
+subject: 
 How to use exemple:
       ./filler_vm -f maps/map02 -p1 players/lcharvol.filler -p2 players/abarriel.filler | ../visualisateur/visualisateur
       
