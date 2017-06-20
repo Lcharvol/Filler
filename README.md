@@ -8,7 +8,9 @@ Projets 42 filler avec interface graphique
                                           ██║     ██║███████╗███████╗███████╗██║  ██║
                                           ╚═╝     ╚═╝╚══════╝╚══════╝╚══════╝╚═╝  ╚═╝
                                           
-subject: 
+subject: https://github.com/Lcharvol/Filler_42_lcharvol/files/1088596/pdf_filler.pdf
+
+
 How to use exemple:
       ./filler_vm -f maps/map02 -p1 players/lcharvol.filler -p2 players/abarriel.filler | ../visualisateur/visualisateur
       
