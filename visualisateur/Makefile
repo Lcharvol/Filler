@@ -12,7 +12,7 @@
 
 NAME = visualisateur
 
-SRCS =	srcs/aff.c \
+SRCS =	srcs/draw.c \
 		srcs/parcing.c \
 		srcs/main.c \
 		srcs/other.c \

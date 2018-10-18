@@ -12,7 +12,7 @@
 
 #include "../includes/visualisateur.h"
 
-void		ft_get_player_name(char *line, t_env *p)
+void		get_player_name(char *line, t_env *p)
 {
 	int i;
 
@@ -40,7 +40,7 @@ void		ft_get_player_name(char *line, t_env *p)
 	ft_strdel(&line);
 }
 
-void		ft_get_map2(t_env *p)
+void		get_map2(t_env *p)
 {
 	int		i;
 	char	*line;
@@ -57,7 +57,7 @@ void		ft_get_map2(t_env *p)
 	}
 }
 
-void		ft_get_map_size2(char *line, t_env *p)
+void		get_map_size2(char *line, t_env *p)
 {
 	int i;
 	int tmp;
@@ -68,10 +68,10 @@ void		ft_get_map_size2(char *line, t_env *p)
 	while (line[i])
 	{
 		tmp = 0;
-		while (ft_is_number(line[i]) == 0 && line[i])
+		while (is_number(line[i]) == 0 && line[i])
 		{
 			tmp += line[i] - 48;
-			if (ft_is_number(line[i + 1]) == 0)
+			if (is_number(line[i + 1]) == 0)
 				tmp *= 10;
 			i++;
 		}
@@ -82,10 +82,10 @@ void		ft_get_map_size2(char *line, t_env *p)
 		i++;
 	}
 	ft_strdel(&line);
-	ft_get_map2(p);
+	get_map2(p);
 }
 
-void		ft_read_output(t_env *p)
+void		read_output(t_env *p)
 {
 	char	*line;
 	int		i;
@@ -94,11 +94,9 @@ void		ft_read_output(t_env *p)
 	while (ft_get_next_line(0, &line) == 1)
 	{
 		if (ft_strncmp(line, "$$$", 2) == 0)
-		{
-			ft_get_player_name(line, p);
-		}
+			get_player_name(line, p);
 		if (ft_strncmp(line, "Plateau", 6) == 0)
-			ft_get_map_size2(line, p);
+			get_map_size2(line, p);
 		if (ft_strncmp(line, "Piece", 4) == 0)
 		{
 			ft_strdel(&line);

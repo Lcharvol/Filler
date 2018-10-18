@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = resources/players/lcharvol.filler
+NAME = assets/players/lcharvol.filler
 
 SRCS := srcs/main.c 
 SRCS +=	srcs/tools.c 
@@ -24,6 +24,9 @@ FLAGS = -Wall -Werror -Wextra -I./includes
 OBJ = $(SRCS:.c=.o)
 
 all: $(NAME)
+
+newline:
+		@echo "\033[38;5;166m\033[0m\n"
 
 $(NAME): $(OBJ)
 	make -C libft

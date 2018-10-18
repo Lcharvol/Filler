@@ -12,7 +12,7 @@
 
 #include "../includes/filler.h"
 
-void		ft_get_real_piece_size(t_piece *p)
+void		get_real_piece_size(t_piece *p)
 {
 	int		i;
 	int		i2;
@@ -40,7 +40,7 @@ void		ft_get_real_piece_size(t_piece *p)
 	p->real_size_y = (p->end_y - p->start_y) + 1;
 }
 
-void		ft_get_piece(t_piece *p)
+void		get_piece(t_piece *p)
 {
 	int		i;
 	char	*line;
@@ -57,10 +57,10 @@ void		ft_get_piece(t_piece *p)
 		i++;
 		ft_strdel(&line);
 	}
-	ft_get_real_piece_size(p);
+	get_real_piece_size(p);
 }
 
-void		ft_get_piece_size(char *line, t_piece *p)
+void		get_piece_size(char *line, t_piece *p)
 {
 	int		i;
 	int		tmp;
@@ -71,10 +71,10 @@ void		ft_get_piece_size(char *line, t_piece *p)
 	while (line[i])
 	{
 		tmp = 0;
-		while (ft_is_number(line[i]) == 0 && line[i])
+		while (is_number(line[i]) == 0 && line[i])
 		{
 			tmp += line[i] - 48;
-			if (ft_is_number(line[i + 1]) == 0)
+			if (is_number(line[i + 1]) == 0)
 				tmp *= 10;
 			i++;
 		}
@@ -85,10 +85,10 @@ void		ft_get_piece_size(char *line, t_piece *p)
 		i++;
 	}
 	ft_strdel(&line);
-	ft_get_piece(p);
+	get_piece(p);
 }
 
-void		ft_init_struct(t_map *map, t_piece *p)
+void		init_struct(t_map *map, t_piece *p)
 {
 	map->map = NULL;
 	map->player = 0;
@@ -116,16 +116,16 @@ int			main(void)
 
 	map = (t_map *)malloc(sizeof(*map));
 	p = (t_piece *)malloc(sizeof(*p));
-	ft_init_struct(map, p);
-	ft_get_player(map);
+	init_struct(map, p);
+	get_player(map);
 	while (1)
 	{
-		ft_get_the_ret(map, p);
-		if (ft_play(map, p) == 1)
+		get_the_ret(map, p);
+		if (play(map, p) == 1)
 		{
-			if (ft_last_try(map, p) == 1)
+			if (last_try(map, p) == 1)
 			{
-				ft_print_result(p, map);
+				print_result(p, map);
 				exit(1);
 			}
 		}

@@ -12,7 +12,7 @@
 
 #include "../includes/filler.h"
 
-void	ft_get_contact(t_piece *p, t_map *map)
+void	get_contact(t_piece *p, t_map *map)
 {
 	int	i;
 	int	i2;
@@ -40,7 +40,7 @@ void	ft_get_contact(t_piece *p, t_map *map)
 	}
 }
 
-int		ft_count_contact(t_map *map, t_piece *p, int y, int x)
+int		count_contact(t_map *map, t_piece *p, int y, int x)
 {
 	int	i;
 	int	i2;
@@ -68,7 +68,7 @@ int		ft_count_contact(t_map *map, t_piece *p, int y, int x)
 	return (p->nbr_contact);
 }
 
-int		ft_algo3(t_map *map, t_piece *p)
+int		algo3(t_map *map, t_piece *p)
 {
 	int	i;
 	int	i2;
@@ -83,9 +83,9 @@ int		ft_algo3(t_map *map, t_piece *p)
 	{
 		i2 = map->map_size_x - (p->size_x - p->end_x);
 		while (--i2 >= 0)
-			if (ft_is_placable(i, i2, map, p) == 0)
+			if (is_placable(i, i2, map, p) == 0)
 			{
-				nbr_contact_tmp = ft_count_contact(map, p, i, i2);
+				nbr_contact_tmp = count_contact(map, p, i, i2);
 				if (nbr_contact_tmp > nbr_contact)
 				{
 					nbr_contact = nbr_contact_tmp;
@@ -94,10 +94,10 @@ int		ft_algo3(t_map *map, t_piece *p)
 				}
 			}
 	}
-	return (ft_algo3_2(nbr_contact, p, map));
+	return (algo3_2(nbr_contact, p, map));
 }
 
-int		ft_algo1(t_map *map, t_piece *p)
+int		algo1(t_map *map, t_piece *p)
 {
 	int	i;
 	int	i2;
@@ -112,10 +112,10 @@ int		ft_algo1(t_map *map, t_piece *p)
 		i2 = map->map_size_x;
 		while (--i2 > 0)
 		{
-			ret = ft_is_placable(i, i2, map, p);
+			ret = is_placable(i, i2, map, p);
 			if (ret == 0)
 			{
-				ft_print_result(p, map);
+				print_result(p, map);
 				return (0);
 			}
 		}
@@ -123,7 +123,7 @@ int		ft_algo1(t_map *map, t_piece *p)
 	return (1);
 }
 
-int		ft_algo1_2(t_map *map, t_piece *p)
+int		algo1_2(t_map *map, t_piece *p)
 {
 	int	i;
 	int	i2;
@@ -138,10 +138,10 @@ int		ft_algo1_2(t_map *map, t_piece *p)
 		i2 = -1;
 		while (++i2 < map->map_size_x)
 		{
-			ret = ft_is_placable(i, i2, map, p);
+			ret = is_placable(i, i2, map, p);
 			if (ret == 0)
 			{
-				ft_print_result(p, map);
+				print_result(p, map);
 				return (0);
 			}
 		}

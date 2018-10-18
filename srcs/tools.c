@@ -12,14 +12,14 @@
 
 #include "../includes/filler.h"
 
-int		ft_is_number(char c)
+int		is_number(char c)
 {
 	if (c >= 48 && c <= 57)
 		return (0);
 	return (1);
 }
 
-void	ft_wich_player(t_map *map)
+void	wich_player(t_map *map)
 {
 	if (map->player == 1)
 	{
@@ -33,7 +33,7 @@ void	ft_wich_player(t_map *map)
 	}
 }
 
-int		ft_is_placable(int i, int i2, t_map *map, t_piece *p)
+int		is_placable(int i, int i2, t_map *map, t_piece *p)
 {
 	int j;
 	int j2;
@@ -57,12 +57,12 @@ int		ft_is_placable(int i, int i2, t_map *map, t_piece *p)
 				count++;
 		}
 	}
-	if (ft_is_placable2(p, count, i, i2) == 0)
+	if (is_placable2(p, count, i, i2) == 0)
 		return (0);
 	return (1);
 }
 
-void	ft_print_result(t_piece *p, t_map *map)
+void	print_result(t_piece *p, t_map *map)
 {
 	ft_putnbr(p->final_y);
 	ft_putchar(' ');
@@ -72,7 +72,7 @@ void	ft_print_result(t_piece *p, t_map *map)
 	map->my_pos_y = p->final_y;
 }
 
-int		ft_last_try(t_map *map, t_piece *p)
+int		last_try(t_map *map, t_piece *p)
 {
 	int	i;
 	int	i2;
@@ -87,10 +87,10 @@ int		ft_last_try(t_map *map, t_piece *p)
 		i2 = -1;
 		while (++i2 < map->map_size_x - 1)
 		{
-			ret = ft_is_placable(i, i2, map, p);
+			ret = is_placable(i, i2, map, p);
 			if (ret == 0)
 			{
-				ft_print_result(p, map);
+				print_result(p, map);
 				return (0);
 			}
 		}

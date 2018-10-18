@@ -12,7 +12,7 @@
 
 #include "../includes/filler.h"
 
-void			ft_get_player(t_map *map)
+void			get_player(t_map *map)
 {
 	char		*line;
 
@@ -23,12 +23,12 @@ void			ft_get_player(t_map *map)
 			map->player = 2;
 		if (ft_strstr(line, "p1"))
 			map->player = 1;
-		ft_wich_player(map);
+		wich_player(map);
 	}
 	ft_strdel(&line);
 }
 
-void			ft_get_strat_pos(int i, t_map *map, char *str)
+void			get_strat_pos(int i, t_map *map, char *str)
 {
 	int			i2;
 	static int	i3;
@@ -57,7 +57,7 @@ void			ft_get_strat_pos(int i, t_map *map, char *str)
 	}
 }
 
-void			ft_get_map(t_map *map)
+void			get_map(t_map *map)
 {
 	int			i;
 	char		*line;
@@ -72,10 +72,10 @@ void			ft_get_map(t_map *map)
 		map->map[i] = ft_strdup((const char *)(&line[4]));
 		ft_strdel(&line);
 	}
-	ft_get_strat_pos(i, map, line);
+	get_strat_pos(i, map, line);
 }
 
-void			ft_get_map_size(char *line, t_map *map)
+void			get_map_size(char *line, t_map *map)
 {
 	int			i;
 	int			tmp;
@@ -86,10 +86,10 @@ void			ft_get_map_size(char *line, t_map *map)
 	while (line[i])
 	{
 		tmp = 0;
-		while (ft_is_number(line[i]) == 0 && line[i])
+		while (is_number(line[i]) == 0 && line[i])
 		{
 			tmp += line[i] - 48;
-			if (ft_is_number(line[i + 1]) == 0)
+			if (is_number(line[i + 1]) == 0)
 				tmp *= 10;
 			i++;
 		}
@@ -99,10 +99,10 @@ void			ft_get_map_size(char *line, t_map *map)
 			map->map_size_x = tmp;
 		i++;
 	}
-	ft_get_map(map);
+	get_map(map);
 }
 
-int				ft_get_the_ret(t_map *map, t_piece *p)
+int				get_the_ret(t_map *map, t_piece *p)
 {
 	char		*line;
 
@@ -111,12 +111,12 @@ int				ft_get_the_ret(t_map *map, t_piece *p)
 	{
 		if (ft_strncmp(line, "Plateau", 6) == 0)
 		{
-			ft_get_map_size(line, map);
+			get_map_size(line, map);
 			ft_strdel(&line);
 		}
 		else if (ft_strncmp(line, "Piece", 4) == 0)
 		{
-			ft_get_piece_size(line, p);
+			get_piece_size(line, p);
 			return (1);
 		}
 		else

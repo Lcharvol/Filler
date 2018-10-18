@@ -12,7 +12,7 @@
 
 #include "../includes/visualisateur.h"
 
-void		ft_draw_rectangle(int start_x, int start_y, t_env *p)
+void		draw_rectangle(int start_x, int start_y, t_env *p)
 {
 	int		i;
 	int		i2;
@@ -36,32 +36,45 @@ void		ft_draw_rectangle(int start_x, int start_y, t_env *p)
 	}
 }
 
-void		ft_draw_title(t_env *p)
+int			is_aly_adj(t_env *p, int i, int i2)
 {
-	int		n;
-	int		r;
-
-	p->img2 = mlx_xpm_file_to_image(p->mlx, "fond.xpm", &n, &r);
-	p->ret2 = mlx_get_data_addr(p->img, &(p->bits_per_pixel),
-		&(p->size_line), &(p->endian));
+	if (i2 + 1 >= p->map_size_x || i2 - 1 < 0 || i + 1 >= p->map_size_y
+		|| i - 1 < 0)
+		return (0);
+	if (p->map[i][i2 + 1] == 'X' || p->map[i][i2 - 1] == 'X' ||
+		p->map[i][i2 + 1] == 'O' || p->map[i][i2 - 1] == 'O')
+		return (1);
+	if (p->map[i + 1][i2] == 'X' || p->map[i - 1][i2] == 'X' ||
+		p->map[i + 1][i2] == 'O' || p->map[i - 1][i2] == 'O')
+		return (1);
+	if (i2 + 2 >= p->map_size_x || i2 - 2 < 0 || i + 2 >= p->map_size_y
+		|| i - 2 < 0)
+		return (0);
+	if (p->map[i][i2 + 2] == 'X' || p->map[i][i2 - 2] == 'X' ||
+		p->map[i][i2 + 2] == 'O' || p->map[i][i2 - 2] == 'O')
+		return (2);
+	if (p->map[i + 2][i2] == 'X' || p->map[i - 2][i2] == 'X' ||
+		p->map[i + 2][i2] == 'O' || p->map[i - 2][i2] == 'O')
+		return (2);
+	return (0);
 }
 
-void		ft_draw(t_env *p)
+void		draw(t_env *p)
 {
-	ft_draw_background(p);
-	ft_draw_menu(p);
-	ft_draw_score(p);
-	ft_draw_map(p);
+	draw_background(p);
+	draw_menu(p);
+	draw_score(p);
+	draw_map(p);
 }
 
-int			ft_is_number(char c)
+int			is_number(char c)
 {
 	if (c >= 48 && c <= 57)
 		return (0);
 	return (1);
 }
 
-void		ft_print_final(t_env *p)
+void		print_final(t_env *p)
 {
 	char	*str;
 

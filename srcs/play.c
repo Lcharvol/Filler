@@ -12,7 +12,7 @@
 
 #include "../includes/filler.h"
 
-int	ft_go_contact1(t_map *map, t_piece *p)
+int	go_contact1(t_map *map, t_piece *p)
 {
 	int i;
 	int i2;
@@ -27,10 +27,10 @@ int	ft_go_contact1(t_map *map, t_piece *p)
 		i2 = map->map_size_x - 1;
 		while (i2 > 0)
 		{
-			ret = ft_is_placable(i, i2, map, p);
+			ret = is_placable(i, i2, map, p);
 			if (ret == 0)
 			{
-				ft_print_result(p, map);
+				print_result(p, map);
 				return (0);
 			}
 			i2--;
@@ -40,7 +40,7 @@ int	ft_go_contact1(t_map *map, t_piece *p)
 	return (1);
 }
 
-int	ft_go_contact2(t_map *map, t_piece *p)
+int	go_contact2(t_map *map, t_piece *p)
 {
 	int i;
 	int i2;
@@ -55,10 +55,10 @@ int	ft_go_contact2(t_map *map, t_piece *p)
 		i2 = -1;
 		while (++i2 < map->map_size_x - 1)
 		{
-			ret = ft_is_placable(i, i2, map, p);
+			ret = is_placable(i, i2, map, p);
 			if (ret == 0)
 			{
-				ft_print_result(p, map);
+				print_result(p, map);
 				return (0);
 			}
 		}
@@ -66,65 +66,65 @@ int	ft_go_contact2(t_map *map, t_piece *p)
 	return (1);
 }
 
-int	ft_big_map(t_map *map, t_piece *p)
+int	big_map(t_map *map, t_piece *p)
 {
 	int ret;
 
-	ft_get_contact(p, map);
+	get_contact(p, map);
 	if (p->contact == 0)
 	{
 		if (map->my_pos_y < map->pos_enemy_y)
 		{
-			if (ft_go_contact1(map, p) == 1)
+			if (go_contact1(map, p) == 1)
 				return (1);
 		}
 		else if (map->my_pos_y >= map->pos_enemy_y)
 		{
-			if (ft_go_contact2(map, p) == 1)
+			if (go_contact2(map, p) == 1)
 				return (1);
 		}
 	}
 	else
 	{
-		ret = ft_algo3(map, p);
+		ret = algo3(map, p);
 		if (ret == 0)
 			return (1);
 	}
 	return (0);
 }
 
-int	ft_small_map(t_map *map, t_piece *p)
+int	small_map(t_map *map, t_piece *p)
 {
 	if (map->my_pos_y < (map->map_size_y / 2))
 	{
 		if (map->my_pos_x < (map->map_size_x / 2))
 		{
-			if (ft_algo2(map, p) == 1)
+			if (algo2(map, p) == 1)
 				return (1);
 		}
 		else if (map->my_pos_x >= (map->map_size_x / 2))
-			if (ft_algo2_2(map, p) == 1)
+			if (algo2_2(map, p) == 1)
 				return (1);
 	}
 	else if (map->my_pos_y >= (map->map_size_y / 2))
 	{
 		if (map->my_pos_x < (map->map_size_x / 2))
 		{
-			if (ft_algo1(map, p) == 1)
+			if (algo1(map, p) == 1)
 				return (1);
 		}
 		else if (map->my_pos_x >= (map->map_size_x / 2))
-			if (ft_algo1_2(map, p) == 1)
+			if (algo1_2(map, p) == 1)
 				return (1);
 	}
 	return (0);
 }
 
-int	ft_play(t_map *map, t_piece *p)
+int	play(t_map *map, t_piece *p)
 {
 	if (map->map_size_y < 20)
-		return (ft_small_map(map, p));
+		return (small_map(map, p));
 	if (map->map_size_y >= 20)
-		return (ft_big_map(map, p));
+		return (big_map(map, p));
 	return (0);
 }

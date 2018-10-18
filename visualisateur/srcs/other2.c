@@ -12,7 +12,7 @@
 
 #include "../includes/visualisateur.h"
 
-void		ft_calc_score(t_env *p)
+void		calc_score(t_env *p)
 {
 	int		i;
 	int		i2;
@@ -35,30 +35,30 @@ void		ft_calc_score(t_env *p)
 	}
 }
 
-void		ft_draw_score(t_env *p)
+void		draw_score(t_env *p)
 {
 	char	*str;
 
-	ft_calc_score(p);
-	ft_modif_color(56, 60, 150, p);
+	calc_score(p);
+	modif_color(56, 60, 150, p);
 	p->l = WIDTH / 3;
 	p->h = 20;
-	ft_draw_rectangle((WIDTH / 2) + 120, (HEIGHT / 3) + 40, p);
-	ft_modif_color(60, 76, 232, p);
+	draw_rectangle((WIDTH / 2) + 120, (HEIGHT / 3) + 40, p);
+	modif_color(60, 76, 232, p);
 	p->l = ((WIDTH / 3) * (p->scorep1 / (p->map_size_x * p->map_size_y)));
 	p->h = 20;
-	ft_draw_rectangle((WIDTH / 2) + 120, (HEIGHT / 3) + 40, p);
-	ft_modif_color(180, 132, 52, p);
+	draw_rectangle((WIDTH / 2) + 120, (HEIGHT / 3) + 40, p);
+	modif_color(180, 132, 52, p);
 	p->l = WIDTH / 3;
 	p->h = 20;
-	ft_draw_rectangle((WIDTH / 2) + 120, (HEIGHT / 2) + 170, p);
-	ft_modif_color(211, 151, 53, p);
+	draw_rectangle((WIDTH / 2) + 120, (HEIGHT / 2) + 170, p);
+	modif_color(211, 151, 53, p);
 	p->l = ((WIDTH / 3) * (p->scorep2 / (p->map_size_x * p->map_size_y)));
 	p->h = 20;
-	ft_draw_rectangle((WIDTH / 2) + 120, (HEIGHT / 2) + 170, p);
+	draw_rectangle((WIDTH / 2) + 120, (HEIGHT / 2) + 170, p);
 }
 
-void		ft_modif_color(int r, int v, int b, t_env *p)
+void		modif_color(int r, int v, int b, t_env *p)
 {
 	p->r = r;
 	p->v = v;
